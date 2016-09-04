@@ -11,7 +11,7 @@ define([
       on: "on",
       off: "off"
     },
-    fullscreenEvent = '';
+    fullscreenEvent = 'fullscreenchange';
   return Accessor.createSubclass({
     declaredClass: "fesri.widgets.FullScreenViewModel",
     properties: {
@@ -29,10 +29,7 @@ define([
     },
     initialize: function() {
 
-      if ("onfullscreenchange" in document) {
-        this.fullscreenEvent = "fullscreenchange";
-      }
-      else if ("onmozfullscreenchange" in document) {
+      if ("onmozfullscreenchange" in document) {
         this.fullscreenEvent = "mozfullscreenchange";
       }
       else if ("onwebkitfullscreenchange" in document) {

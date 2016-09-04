@@ -40,14 +40,6 @@
     border-color: transparent #323232 transparent transparent
 }
 
-.esri-navigation-toggle__button--rotate {
-    border-top: solid 1px rgba(50, 50, 50, 0.2)
-}
-
-.esri-navigation-toggle__button--pan {
-    margin-bottom: 0
-}
-
 .esri-full-screen-toggle__button--active {
     background-color: #f2f2f2;
     color: #191919
