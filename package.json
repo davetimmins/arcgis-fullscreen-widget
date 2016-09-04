@@ -1,0 +1,21 @@
+{
+  "name": "fesri-full-screen-widget",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dojoConfig.js",
+  "author": "Dave Timmins <dwtimmins@outlook.com>",
+  "license": "MIT",
+  "private": true,
+  "local-web-server": {
+    "port": 8100
+  },
+  "scripts": {
+    "start": "ws"
+  },
+  "devDependencies": {    
+    "local-web-server": "^1.2.6"
+  },
+  "dependencies": {
+    
+  }
+}
