@@ -10,7 +10,8 @@ define([
     mode = {
       on: "on",
       off: "off"
-    };
+    },
+    fullscreenEvent = '';
   return Accessor.createSubclass({
     declaredClass: "fesri.widgets.FullScreenViewModel",
     properties: {
@@ -28,18 +29,25 @@ define([
     },
     initialize: function() {
 
-      document.addEventListener("fullscreenchange", this._fullScreenHandler.bind(this));
-      document.addEventListener("webkitfullscreenchange", this._fullScreenHandler.bind(this));
-      document.addEventListener("mozfullscreenchange", this._fullScreenHandler.bind(this));
-      document.addEventListener("MSFullscreenChange", this._fullScreenHandler.bind(this));
+    if ("onfullscreenchange" in document) {
+      this.fullscreenEvent = "fullscreenchange";
+    }
+    else if ("onmozfullscreenchange" in document) {
+      this.fullscreenEvent = "mozfullscreenchange";
+    }
+    else if ("onwebkitfullscreenchange" in document) {
+      this.fullscreenEvent = "webkitfullscreenchange";
+    }
+    else if ("onmsfullscreenchange" in document) {
+      this.fullscreenEvent = "MSFullscreenChange";
+    }
+
+      document.addEventListener(this.fullscreenEvent, this._fullScreenHandler.bind(this));
     },
     destroy: function() {
 
       this._handles.destroy();
-      document.removeEventListener("fullscreenchange", this._fullScreenHandler);
-      document.removeEventListener("webkitfullscreenchange", this._fullScreenHandler);
-      document.removeEventListener("mozfullscreenchange", this._fullScreenHandler);
-      document.removeEventListener("MSFullscreenChange", this._fullScreenHandler);
+      document.removeEventListener(this.fullscreenEvent, this._fullScreenHandler);
     },
     _handles: null,
     state: state.disabled,
