@@ -29,18 +29,18 @@ define([
     },
     initialize: function() {
 
-    if ("onfullscreenchange" in document) {
-      this.fullscreenEvent = "fullscreenchange";
-    }
-    else if ("onmozfullscreenchange" in document) {
-      this.fullscreenEvent = "mozfullscreenchange";
-    }
-    else if ("onwebkitfullscreenchange" in document) {
-      this.fullscreenEvent = "webkitfullscreenchange";
-    }
-    else if ("onmsfullscreenchange" in document) {
-      this.fullscreenEvent = "MSFullscreenChange";
-    }
+      if ("onfullscreenchange" in document) {
+        this.fullscreenEvent = "fullscreenchange";
+      }
+      else if ("onmozfullscreenchange" in document) {
+        this.fullscreenEvent = "mozfullscreenchange";
+      }
+      else if ("onwebkitfullscreenchange" in document) {
+        this.fullscreenEvent = "webkitfullscreenchange";
+      }
+      else if ("onmsfullscreenchange" in document) {
+        this.fullscreenEvent = "MSFullscreenChange";
+      }
 
       document.addEventListener(this.fullscreenEvent, this._fullScreenHandler.bind(this));
     },
