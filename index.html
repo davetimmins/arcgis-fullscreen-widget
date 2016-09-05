@@ -69,7 +69,8 @@ require([
   view.ui.add(toggle2, "top-left");
 
   var toggle3 = new FullScreen({
-    view: view
+    view: view,
+    hideIfFullScreenDisabled: false
   });
   view.ui.add(toggle3, "bottom-right");
 

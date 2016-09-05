@@ -16,14 +16,15 @@ define([
 
   return Accessor.createSubclass({
 
-    declaredClass: "fesri.widgets.FullScreenViewModel",
+    declaredClass: "custom.widgets.FullScreenViewModel",
     properties: {
-      navigationMode: {},
+      mode: {},
       state: {
         dependsOn: ["view.ready"],
         readOnly: !0
       },
-      view: {}
+      view: {},
+      hideIfFullScreenDisabled: true
     },
 
     constructor: function() {
@@ -80,6 +81,15 @@ define([
     _modeGetter: function() {
 
       return this._get("mode") || mode.off;
+    },
+
+    _hideIfFullScreenDisabledGetter: function() {
+
+      return !screenfull.enabled && this._get("hideIfFullScreenDisabled");
+    },
+    _hideIfFullScreenDisabledSetter: function(disabled) {
+
+      this._set("hideIfFullScreenDisabled", !screenfull.enabled && disabled)
     },
 
     view: null,

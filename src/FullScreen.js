@@ -30,11 +30,11 @@ function (
     base: "esri-full-screen-toggle",
     button: "esri-full-screen-toggle__button esri-widget-button",
     text: "esri-icon-font-fallback-text",
+    disabled: "esri-disabled",
+    hidden: "esri-hidden",
     // icons
     fullScreenOnIcon: "esri-icon-full-screen-on",
-    fullScreenOffIcon: "esri-icon-full-screen-off",
-    // common
-    disabled: "esri-disabled"
+    fullScreenOffIcon: "esri-icon-full-screen-off"   
   };
 
   return Widget.createSubclass([_TemplatedMixin],
@@ -45,10 +45,13 @@ function (
       },
       viewModel: {
         type: FullScreenViewModel
+      },
+      hideIfFullScreenDisabled: {
+        dependsOn: ["viewModel.hideIfFullScreenDisabled"]
       }
     },
 
-    declaredClass: "fesri.widgets.FullScreen",
+    declaredClass: "custom.widgets.FullScreen",
 
     baseClass: CSS.base,
 
@@ -59,7 +62,11 @@ function (
 
       this.own(
         watchUtils.init(this, "viewModel.state", this._handleState),
-        watchUtils.init(this, "viewModel.mode", this._updateButton)
+        watchUtils.init(this, "viewModel.mode", this._updateButton),
+        watchUtils.init(this, "viewModel.hideIfFullScreenDisabled", function (value) {
+
+          domClass.toggle(this.domNode, CSS.hidden, value);
+        })
       );
 
       this.domNode.addEventListener("click", this.viewModel.toggle); 
@@ -77,7 +84,8 @@ function (
     _getViewAttr: viewModelWiring.createGetterDelegate("view"),
     _setViewAttr: viewModelWiring.createSetterDelegate("view"),
 
-    //toggle: viewModelWiring.createMethodDelegate("toggle"),
+    _getHideIfFullScreenDisabledAttr: viewModelWiring.createGetterDelegate("hideIfFullScreenDisabled"),
+    _setHideIfFullScreenDisabledAttr: viewModelWiring.createSetterDelegate("hideIfFullScreenDisabled"),
 
     _handleState: function (value) {
       var disabled = value === "disabled";

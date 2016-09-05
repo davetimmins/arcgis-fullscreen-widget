@@ -1,6 +1,6 @@
 {
   "name": "arcgis-fullscreen-widget",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An ArcGIS JS V4 widget that uses the Fullscreen API.",
   "files": ["src"],
   "main": "dojoConfig.js",
