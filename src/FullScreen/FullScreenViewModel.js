@@ -66,7 +66,7 @@ define([
     state: state.disabled,
     _stateGetter: function() {
 
-      return this.get("view.ready") ? state.ready : state.disabled
+      return this.get("view.ready") && screenfull.enabled ? state.ready : state.disabled
     },
     
     mode: mode.off,
