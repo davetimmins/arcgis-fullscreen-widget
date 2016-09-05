@@ -37,6 +37,7 @@ define([
 
       if (screenfull.enabled) {
         document.addEventListener(screenfull.raw.fullscreenchange, this._fullScreenHandler);
+        document.addEventListener(screenfull.raw.fullscreenerror, this._fullScreenError);
       }      
     },
 
@@ -44,6 +45,7 @@ define([
       
       if (screenfull.enabled) {
         document.removeEventListener(screenfull.raw.fullscreenchange, this._fullScreenHandler);
+        document.removeEventListener(screenfull.raw.fullscreenerror, this._fullScreenError);
       } 
 
       this._handles.destroy();
@@ -59,6 +61,11 @@ define([
         else {
           domClass.add(this.view.container, 'view-fullscreen-on');
         }
+    },
+
+    _fullScreenError: function (event) {
+
+        console.error('Failed to enable fullscreen', event);
     },
 
     _handles: null,

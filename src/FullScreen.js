@@ -2,16 +2,14 @@
 define([
   "dojo/dom-class",
   "dojo/dom-attr",
-  "dojo/on",
 
   "dijit/_TemplatedMixin",
-  "dijit/a11yclick",
 
   "esri/core/watchUtils",
 
   "esri/widgets/support/viewModelWiring",
-
   "esri/widgets/Widget",
+
   "./FullScreen/FullScreenViewModel",
 
   "dojo/i18n!./FullScreen/nls/FullScreen",
@@ -19,11 +17,11 @@ define([
   "dojo/text!./FullScreen/templates/FullScreen.html"
 ],
 function (
-  domClass, domAttr, on,
-  _TemplatedMixin, a11yclick,
+  domClass, domAttr,
+  _TemplatedMixin, 
   watchUtils,
-  viewModelWiring,
-  Widget, FullScreenViewModel,
+  viewModelWiring, Widget, 
+  FullScreenViewModel,
   i18n,
   templateString
 ) {
@@ -61,9 +59,15 @@ function (
 
       this.own(
         watchUtils.init(this, "viewModel.state", this._handleState),
-        watchUtils.init(this, "viewModel.mode", this._updateButton),
-        on(this.domNode, a11yclick, this.viewModel.toggle)
+        watchUtils.init(this, "viewModel.mode", this._updateButton)
       );
+
+      this.domNode.addEventListener("click", this.viewModel.toggle); 
+    },
+
+    destroy: function () {
+
+      this.domNode.removeEventListener("click", this.viewModel.toggle); 
     },
 
     _css: CSS,
@@ -73,7 +77,7 @@ function (
     _getViewAttr: viewModelWiring.createGetterDelegate("view"),
     _setViewAttr: viewModelWiring.createSetterDelegate("view"),
 
-    toggle: viewModelWiring.createMethodDelegate("toggle"),
+    //toggle: viewModelWiring.createMethodDelegate("toggle"),
 
     _handleState: function (value) {
       var disabled = value === "disabled";
