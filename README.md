@@ -1,7 +1,7 @@
 # arcgis-fullscreen-widget
 An ArcGIS JS V4 widget that uses the Fullscreen API.
 
-[![npm](https://img.shields.io/npm/v/arcgis-fullscreen-widget.svg?maxAge=2592000)]()
+[![npm](https://img.shields.io/npm/v/arcgis-fullscreen-widget.svg?maxAge=2592000)](https://www.npmjs.com/package/arcgis-fullscreen-widget)
 
 Include the style, create the widget, then add it to your map UI
 
