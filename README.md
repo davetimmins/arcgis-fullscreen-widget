@@ -19,3 +19,6 @@ require([
 ```
 
 Get it from here or via npm `npm install arcgis-fullscreen-widget --save`
+
+#### Credit
+This uses [screenfull](https://github.com/sindresorhus/screenfull.js) internally and was influenced by existing leaflet plugins like https://github.com/brunob/leaflet.fullscreen and https://github.com/Leaflet/Leaflet.fullscreen
