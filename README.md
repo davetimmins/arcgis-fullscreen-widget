@@ -15,3 +15,5 @@ require([
   });
   view.ui.add(toggle, "top-right");
 ```
+
+Get it from here or via npm `npm install arcgis-fullscreen-widget --save`
