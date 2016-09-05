@@ -74,42 +74,51 @@ define([
       return this._get("mode") || mode.off;
     },
     view: null,
-    toggle: function() {
+    toggle: function(e) {
 
-      if (this.state !== state.disabled) {
+      e.preventDefault();
 
-        this.mode = this.mode !== mode.on ? mode.on : mode.off;
+      if (this.state === state.disabled) {
+        return;
+      }
+
+      this.mode = this.mode !== mode.on ? mode.on : mode.off;
              
-        if (this.mode === mode.off) {
-                  
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          } else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else {
-            console.log("Fullscreen API is not supported");
-          }
-        }
-        else {
+      if (this.mode === mode.off) {
+                
+        this._exitFullscreen();
+      }
+      else {
 
-          var node = this.view.container;
+        this._requestFullscreen(this.view.container);
+      }      
+    },
+    _requestFullscreen: function(element) {
 
-          if (node.requestFullscreen) {
-            node.requestFullscreen();
-          } else if (node.msRequestFullscreen) {
-            node.msRequestFullscreen();
-          } else if (node.webkitRequestFullscreen) {
-            node.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
-          } else if (node.mozRequestFullScreen) {
-            node.mozRequestFullScreen();
-          } else {
-            console.log("Fullscreen API is not supported");
-          }
-        }
+      if (element.requestFullscreen) {
+        element.requestFullscreen();
+      } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+      } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+      } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+      } else {
+        console.log('Fullscreen API is not supported.');
+      }
+    },
+    _exitFullscreen: function() {
+
+      if (document.exitFullscreen) {
+        document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+        document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+        document.msExitFullscreen();
+      } else {
+        console.log('Fullscreen API is not supported.');
       }
     }
   })
