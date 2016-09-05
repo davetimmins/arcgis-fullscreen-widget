@@ -40,15 +40,16 @@ require([
   "esri/widgets/Home",
   "custom-widgets/FullScreen",
   "dojo/domReady!"
-], function(Map, MapView, Home, FullScreen){
+], function(Map, MapView, Home, FullScreen) {
+  
   var map = new Map({
-    basemap: "streets"
+    basemap: "streets-night-vector"
   });
   var view = new MapView({
     container: "viewDiv",  
     map: map,  
-    zoom: 4,  
-    center: [15, 65]
+    zoom: 3,  
+    center: [170.5, -41]
   });
 
   var homeBtn = new Home({

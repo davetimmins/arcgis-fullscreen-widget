@@ -1,12 +1,12 @@
 # arcgis-fullscreen-widget
 An ArcGIS JS V4 widget that uses the Fullscreen API.
 
-Create it, then add it to your map UI
+Include the style, create the widget, then add it to your map UI
 
 ```js
 require([
   "custom-widgets/FullScreen"
-], function(FullScreen){
+], function(FullScreen) {
 
   // create your map and view
 
