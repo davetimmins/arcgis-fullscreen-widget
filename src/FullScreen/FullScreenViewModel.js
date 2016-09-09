@@ -1,9 +1,8 @@
 define([
   "esri/core/Accessor", 
-  "esri/core/HandleRegistry",
   "dojo/dom-class",
-  "./screenfull",
-], function(Accessor, HandleRegistry, domClass, screenfull) {
+  "./screenfull"
+], function(Accessor, domClass, screenfull) {
 
   var state = {
     disabled: "disabled",
@@ -29,7 +28,6 @@ define([
 
     constructor: function() {
 
-      this._handles = new HandleRegistry;
       this.toggle = this.toggle.bind(this);   
       this._fullScreenHandler = this._fullScreenHandler.bind(this);   
     },
@@ -48,8 +46,6 @@ define([
         document.removeEventListener(screenfull.raw.fullscreenchange, this._fullScreenHandler);
         document.removeEventListener(screenfull.raw.fullscreenerror, this._fullScreenError);
       } 
-
-      this._handles.destroy();
     },
 
     _fullScreenHandler: function () {
@@ -68,8 +64,6 @@ define([
 
         console.error('Failed to enable fullscreen', event);
     },
-
-    _handles: null,
 
     state: state.disabled,
     _stateGetter: function() {
